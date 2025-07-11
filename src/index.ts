@@ -1,6 +1,3 @@
-import { renderApplication } from './render-app'
-import App from './app.vue'
+import { renderProduction } from './render-app'
 
-renderApplication({
-  component: App,
-})
+renderProduction()
