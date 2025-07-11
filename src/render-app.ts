@@ -2,6 +2,7 @@ import { createApp, type Component } from 'vue'
 import { createWebHistory, type RouterHistory, createMemoryHistory, createRouter } from 'vue-router'
 import { routes } from './route'
 import App from './app.vue'
+import { createPinia } from 'pinia'
 
 export const renderApplication = (options: { component: Component; history: RouterHistory }) => {
   const app = createApp(options.component)
@@ -10,7 +11,7 @@ export const renderApplication = (options: { component: Component; history: Rout
     routes: routes,
   })
   const div = document.createElement('div')
-  app.use(router)
+  app.use(router).use(createPinia())
   router
     .isReady()
     .then(() => {
