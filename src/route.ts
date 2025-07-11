@@ -1,6 +1,6 @@
 import { type RouteRecordRaw } from 'vue-router'
 import List from './page/list.vue'
-import Index from './page/index.vue'
+import Index from './page/index/index.vue'
 
 export const routes: RouteRecordRaw[] = [
   {
