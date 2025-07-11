@@ -1,6 +1,7 @@
-import { describe, it } from 'vitest'
+import { describe, expect, it } from 'vitest'
 import { renderTest } from '../../render-app'
 import { mockBaseScene } from '../../test/mock/base-scene'
+import userEvent from '@testing-library/user-event'
 
 describe('todo list', () => {
   it('todo list 从服务器端加载数据后能正确的展示', async () => {
@@ -8,5 +9,14 @@ describe('todo list', () => {
       initScript: mockBaseScene,
     })
     await findByText('读一本书')
+  })
+  it('用户可以手动新增一条 todo 项', async () => {
+    const { findByPlaceholderText, findAllByRole } = await renderTest({
+      initScript: mockBaseScene,
+    })
+    await userEvent.type(await findByPlaceholderText('添加新任务'), '写一篇文章')
+    await userEvent.keyboard('[enter]')
+    const liList = await findAllByRole('listitem')
+    expect(liList).lengthOf(3, '新增一条数据后，总 TODO 项有三条')
   })
 })

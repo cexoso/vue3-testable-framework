@@ -29,5 +29,7 @@ export const renderBase = async (options: {
       // TODO
     })
   document.body.appendChild(div)
-  return app
+  return {
+    app,
+  }
 }
