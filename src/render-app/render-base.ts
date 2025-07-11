@@ -19,10 +19,8 @@ export const renderBase = async (options: {
   app.use(router).use(createPinia())
   await router
     .isReady()
+    .then(() => app.runWithContext(() => Promise.resolve(options.initScript?.())))
     .then(() => {
-      app.runWithContext(() => {
-        options.initScript?.()
-      })
       app.mount(div)
     })
     .catch(() => {

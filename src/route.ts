@@ -6,6 +6,7 @@ export const routes: RouteRecordRaw[] = [
   {
     path: '/index',
     component: Index,
+    name: '首页',
   },
   {
     path: '/todo',
