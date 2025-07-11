@@ -20,10 +20,11 @@
     "@vue/tsconfig": "^0.7.0",
     "typescript": "^5.8.3",
     "vite": "^6.0.7",
-    "vitest": "^2.1.8",
+    "vitest": "3.0.9",
     "@testing-library/dom": "^10.4.0",
     "@types/sinon": "^17.0.3",
-    "playwright": "^1.50.1",
-    "sinon": "^19.0.2"
+    "playwright": "1.51.1",
+    "sinon": "^19.0.2",
+    "@vitest/browser": "3.0.9"
   }
 }

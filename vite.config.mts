@@ -1,5 +1,5 @@
-import { defineConfig } from "vite";
-import vue from "@vitejs/plugin-vue";
+import { defineConfig } from 'vite'
+import vue from '@vitejs/plugin-vue'
 
 export default defineConfig(() => {
   return {
@@ -7,5 +7,12 @@ export default defineConfig(() => {
     server: {
       allowedHosts: true as const,
     },
-  };
-});
+    test: {
+      browser: {
+        enabled: true,
+        provider: 'playwright',
+        instances: [{ browser: 'chromium' }],
+      },
+    },
+  }
+})

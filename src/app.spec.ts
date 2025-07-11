@@ -1,8 +1,12 @@
 import { describe, it } from 'vitest'
-import {} from '@testing-library/dom'
+import { renderTest } from './render-app'
+import { fireEvent } from '@testing-library/dom'
 
 describe('app', () => {
-  it('page index', () => {
-    console.log('debugger 🐛 1', 1)
+  it('page index', async () => {
+    const { findByText } = await renderTest()
+    await findByText(0)
+    fireEvent.click(await findByText('click'))
+    await findByText(1)
   })
 })
