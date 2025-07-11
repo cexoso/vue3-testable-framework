@@ -49,5 +49,6 @@ import { useTodoStore } from './todo'
 import { storeToRefs } from 'pinia'
 
 const todoController = useTodoStore()
+todoController.loadTodoListfromServer()
 const { todos, newTodo } = storeToRefs(todoController)
 </script>

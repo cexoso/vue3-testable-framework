@@ -8,6 +8,7 @@ export const renderBase = async (options: {
   component: Component
   history: RouterHistory
   container?: Element
+  initScript?: () => unknown
 }) => {
   const app = createApp(options.component)
   const router = createRouter({
@@ -19,6 +20,9 @@ export const renderBase = async (options: {
   await router
     .isReady()
     .then(() => {
+      app.runWithContext(() => {
+        options.initScript?.()
+      })
       app.mount(div)
     })
     .catch(() => {

@@ -1,6 +1,6 @@
 import { createWebHistory } from 'vue-router'
 import App from '../app.vue'
-import { renderBase } from '../render-app/render-base'
+import { renderBase } from './render-base'
 
 export const renderProduction = () => {
   return renderBase({

@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
+import { useHttp } from '../../layout/http-service'
 
 interface Todo {
   id: number
@@ -33,11 +34,19 @@ export const useTodoStore = defineStore('todo', () => {
     todos.value = todos.value.filter((t) => t.id !== id)
   }
 
+  const http = useHttp()
+
+  const loadTodoListfromServer = async () => {
+    const response = await http.getTodoList({ status: 'done' })
+    todos.value = response.data
+  }
+
   return {
     todos,
     newTodo,
     addTodo,
     toggleTodo,
     removeTodo,
+    loadTodoListfromServer,
   }
 })
