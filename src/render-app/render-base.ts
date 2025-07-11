@@ -2,6 +2,7 @@ import { createApp, type Component } from 'vue'
 import { type RouterHistory, createRouter } from 'vue-router'
 import { routes } from '../route'
 import { createPinia } from 'pinia'
+import './style.css'
 
 export const renderBase = async (options: {
   component: Component
