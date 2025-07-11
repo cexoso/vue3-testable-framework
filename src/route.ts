@@ -1,6 +1,7 @@
 import { type RouteRecordRaw } from 'vue-router'
 import List from './page/list.vue'
 import Index from './page/index/index.vue'
+import Todo from './page/todo/todo.vue'
 
 export const routes: RouteRecordRaw[] = [
   {
@@ -12,7 +13,11 @@ export const routes: RouteRecordRaw[] = [
     component: List,
   },
   {
+    path: '/todo',
+    component: Todo,
+  },
+  {
     path: '/',
-    redirect: '/index',
+    redirect: '/todo',
   },
 ]
