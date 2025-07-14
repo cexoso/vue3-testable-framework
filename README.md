@@ -1,14 +1,9 @@
-
-<video width="320" height="240" controls>
-    <source src="./video/on_shell.mov" type="video/mp4">
-</video>
-
 # 摘要
 本篇文章用于分享如何基于 vue3 搭建一个测试友好的框架，搭建完成后你将得到一个可以使用行为测试驱动开发的 vue3 项目。
+
 本文会以一个简单的 Todo List 项目为例子，并且为了演示测试的覆盖范围，还会添加 vue-router、pinia，以演示测试如何覆盖到这些组件的。
+
 Todo List 项目地址：https://github.com/cexoso/vue3-testable-framework/tree/main
-最终效果演示
-暂时无法在飞书文档外展示此内容
 
 # 如何确定一个项目的可测试性
 以一个测试用例的结构下手，一个测试用例分为三部分：
