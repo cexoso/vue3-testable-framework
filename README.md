@@ -665,6 +665,34 @@ export function getOrCreateStub<T extends object, K extends keyof T>(service: T,
 }
 ```
 
+## 通过 initScript 调整路由
+
+上文已经提到了 initScript 可以用到准备环境——mock 数据。
+
+initScript 还可以对路由进行调整，代码如下:
+```typescript
+import { describe, it } from 'vitest'
+import { renderTest } from '../../render-app'
+import { mockBaseScene } from '../../test/mock/base-scene'
+import { useRouter } from 'vue-router'
+
+describe('index', () => {
+  it('todo list 从服务器端加载数据后能正确的展示', async () => {
+    const { findByText } = await renderTest({
+      initScript: async () => {
+        mockBaseScene()
+        await useRouter().replace({
+          name: '首页',
+        })
+      },
+    })
+    await findByText('welcome')
+  })
+})
+```
+
+其中 `await useRouter().replace({ name: '首页' })` 用于跳转路由。这里因为 initScript 是使用 app.runWithContext 运行的，可以访问 app 的上下文信息，其中有 vue-router 相关的信息，所以 useRouter 可以获取到当前 app 相关的路由进行操作。路由的操作也会直接影响 app 页面的展示。
+---------
 以上这部分就是 vue3 项目整项目可测试的所有内容了，以下的文章会继续讨论一些别的话题。
 # vitest browser mode
 相对于 mocha 来说，vitest 是一个非常先进的测试框架，browser mode (浏览器模式)更是跨时代的，浏览器模式可以用真实的浏览器来跑测试用例。十多年前使用 jasmine&karma 框架也能做到将测试用例放到浏览器上跑，vitest 浏览器模式的跨时代并不是体现在在浏览器上跑测试用例，而是将 vite 的工程化和浏览器模式结合了起来，这两者的结合让浏览器上跑真实项目测试成为了可能，研发不再需要为测试框架应该如何处理 typescript、css 等烦恼了。
