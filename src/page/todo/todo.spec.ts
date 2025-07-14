@@ -1,15 +1,28 @@
-import { describe, expect, it } from 'vitest'
+import { beforeEach, describe, expect, it } from 'vitest'
 import { renderTest } from '../../render-app'
 import { mockBaseScene } from '../../test/mock/base-scene'
 import userEvent from '@testing-library/user-event'
 import { findByText } from '@testing-library/dom'
+import { useTodoStore } from './todo'
+import { createPinia, setActivePinia } from 'pinia'
 
 describe('todo list', () => {
+  beforeEach(() => {
+    setActivePinia(createPinia())
+  })
+
   it('todo list 从服务器端加载数据后能正确的展示', async () => {
     const { findByText } = await renderTest({
       initScript: mockBaseScene,
     })
     await findByText('读一本书')
+  })
+
+  it('直接对 core 进行测试', async () => {
+    mockBaseScene()
+    const todoController = useTodoStore()
+    await todoController.loadTodoListfromServer()
+    expect(todoController.todos.find((i) => i.text === '读一本书')).not.null
   })
   it('用户可以手动新增一条 todo 项', async () => {
     const { findByPlaceholderText, findAllByRole } = await renderTest({
